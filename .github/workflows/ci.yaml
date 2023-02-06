@@ -18,3 +18,10 @@ jobs:
         uses: aws-actions/aws-codebuild-run-build@v1
         with:
           project-name: financial-manager
+          wait-for-build: false
+          wait-for-build-timeout: 10
+          buildspec: buildspec.yml
+          source-version: ${{ github.sha }}
+          environment-variables: 'SOURCE_VERSION=${{ github.sha }}'
+          environment-variables-override: 'SOURCE_VERSION=${{ github.sha }}'
+          source-type: GITHUB
